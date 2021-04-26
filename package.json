@@ -28,7 +28,8 @@
     "rules": {
       "react/prefer-stateless-function": 0,
       "react/jsx-filename-extension": 0,
-      "react/jsx-one-expression-per-line": 0
+      "react/jsx-one-expression-per-line": 0,
+      "react/button-has-type": 0
     },
     "env": {
       "browser": true
@@ -48,6 +49,7 @@
   },
   "devDependencies": {
     "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^3.4.0",
     "prettier": "^2.2.1"
   }
 }
