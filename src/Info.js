@@ -1,8 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const Info = () => {
   const [name, setName] = useState('');
   const [nickname, SetNickname] = useState('');
+  useEffect(() => {
+    console.log('Done the rendering.');
+    console.log({ name, nickname });
+  });
   const onChangeName = (e) => {
     setName(e.target.value);
   };
