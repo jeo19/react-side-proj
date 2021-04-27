@@ -4,9 +4,9 @@ const Info = () => {
   const [name, setName] = useState('');
   const [nickname, SetNickname] = useState('');
   useEffect(() => {
-    console.log('Run only when a component mounted.');
+    console.log('Run only when a specific component updated');
     console.log({ name, nickname });
-  }, []);
+  }, [name]);
   const onChangeName = (e) => {
     setName(e.target.value);
   };
