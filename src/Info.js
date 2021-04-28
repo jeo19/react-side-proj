@@ -4,9 +4,13 @@ const Info = () => {
   const [name, setName] = useState('');
   const [nickname, SetNickname] = useState('');
   useEffect(() => {
-    console.log('Run only when a specific component updated');
-    console.log({ name, nickname });
-  }, [name]);
+    console.log('effect');
+    console.log(name);
+    return () => {
+      console.log('cleanup');
+      console.log(name);
+    };
+  });
   const onChangeName = (e) => {
     setName(e.target.value);
   };
