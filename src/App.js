@@ -1,20 +1,12 @@
-import React, { useState } from 'react';
-import Info from './Info';
+import React from 'react';
+import { ThemeContext } from './theme-context';
+import ThemeButton from './ThemeButton';
 
 function App() {
-  const [visible, setVisible] = useState(false);
   return (
-    <div>
-      <button
-        onClick={() => {
-          setVisible(!visible);
-        }}
-      >
-        {visible ? 'Hidden' : 'Visible'}
-      </button>
-      <hr />
-      {visible && <Info />}
-    </div>
+    <ThemeContext.Provider value="blue">
+      <ThemeButton />
+    </ThemeContext.Provider>
   );
 }
 
