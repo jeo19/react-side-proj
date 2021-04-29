@@ -1,13 +1,8 @@
 import React from 'react';
-import { ThemeContext } from './theme-context';
-import ThemeButton from './ThemeButton';
+import ContextSample from './ContextSample';
 
 function App() {
-  return (
-    <ThemeContext.Provider value="blue">
-      <ThemeButton />
-    </ThemeContext.Provider>
-  );
+  return <ContextSample />;
 }
 
 export default App;
