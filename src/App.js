@@ -1,8 +1,8 @@
 import React from 'react';
-import ContextSample from './ContextSample';
+import Counter from './Counter';
 
 function App() {
-  return <ContextSample />;
+  return <Counter />;
 }
 
 export default App;

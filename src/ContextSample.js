@@ -1,6 +1,6 @@
 import React, { createContext, useContext } from 'react';
 
-const ThemeContext = createContext('black');
+const ThemeContext = createContext('mediumpurple');
 const ContextSample = () => {
   const theme = useContext(ThemeContext);
   const style = {
