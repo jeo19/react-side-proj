@@ -1,8 +1,8 @@
 import React from 'react';
-import InputSample from './InputSample';
+import UserInfo from './Info-useReducer';
 
 function App() {
-  return <InputSample />;
+  return <UserInfo />;
 }
 
 export default App;
