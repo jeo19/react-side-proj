@@ -14,7 +14,7 @@ const Average = () => {
     setNumber(e.target.value);
   };
   const onInsert = (e) => {
-    const nextList = list.concat(parseInt(number, 10));
+    const nextList = list.concat(parseInt(number));
     setList(nextList);
     setNumber('');
   };
