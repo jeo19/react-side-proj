@@ -1,8 +1,8 @@
 import React from 'react';
-import UserInfo from './Info-useReducer';
+import Average from './Average';
 
 function App() {
-  return <UserInfo />;
+  return <Average />;
 }
 
 export default App;

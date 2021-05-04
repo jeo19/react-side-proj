@@ -15,6 +15,7 @@ const UserInfo = () => {
     dispatch(e.target);
   };
   const { name, nickname } = state;
+  console.log(state);
   return (
     <div>
       <div>
