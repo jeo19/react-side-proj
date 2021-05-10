@@ -1,4 +1,5 @@
-import React, { useReducer } from 'react';
+import React from 'react';
+import useInputs from './useInputs';
 
 function reducer(state, action) {
   return {
@@ -7,13 +8,11 @@ function reducer(state, action) {
   };
 }
 const UserInfo = () => {
-  const [state, dispatch] = useReducer(reducer, {
+  const [state, onChange] = useInputs( {
     name: '',
     nickname: '',
   });
-  const onChange = (e) => {
-    dispatch(e.target);
-  };
+
   const { name, nickname } = state;
   console.log(state);
   return (
