@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function usePromise(promiseCreator, deps) {
   const [resolved, setResolved] = useState(null);
@@ -15,7 +15,10 @@ export default function usePromise(promiseCreator, deps) {
     }
     setLoading(false);
   };
+
   useEffect(() => {
     process();
   }, deps);
+
+  return [loading, resolved, error];
 }

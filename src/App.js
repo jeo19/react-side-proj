@@ -1,8 +1,8 @@
 import React from 'react';
-import usePromiseSample from './usePromiseSample';
+import UsePromiseSample from './UsePromiseSample';
 
 function App() {
-  return <usePromiseSample />;
+  return <UsePromiseSample />;
 }
 
 export default App;
