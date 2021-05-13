@@ -1,8 +1,8 @@
 import React from 'react';
-import UserInfo from './Info-useReducer';
+import usePromiseSample from './usePromiseSample';
 
 function App() {
-  return <UserInfo />;
+  return <usePromiseSample />;
 }
 
 export default App;

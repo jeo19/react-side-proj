@@ -11,4 +11,4 @@ const usePromiseSample = () => {
 
   return <div>{resolved}</div>;
 };
-export default usePromise;
+export default usePromiseSample;
