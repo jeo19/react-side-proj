@@ -1,14 +1,8 @@
-function work(callback) {
+const myPromise = new Promise((resolve, reject) => {
   setTimeout(() => {
-    const start = Date.now();
-    for (let i = 1; i < 100000; i += 1) {}
-    const end = Date.now();
-    console.log(`${end - start}ms`);
-    callback();
-  }, 0);
-}
-console.log('Start work');
-work(() => {
-  console.log('work done');
+    resolve(1);
+  }, 1000);
 });
-console.log('next work');
+myPromise.then((n) => {
+  console.log(n);
+});
