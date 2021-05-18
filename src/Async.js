@@ -8,11 +8,16 @@ function incrementAndPrint(n) {
         reject(error);
         return;
       }
-      console.log(value);
+      console.log(`result:${value}`);
       resolve(value);
     }, 1000);
   });
 }
-incrementAndPrint(0).then((n) => {
-  console.log(`result:${n}`);
-});
+incrementAndPrint(0)
+  .then(incrementAndPrint)
+  .then(incrementAndPrint)
+  .then(incrementAndPrint)
+  .then(incrementAndPrint)
+  .catch((e) => {
+    console.error(e);
+  });
