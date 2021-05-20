@@ -4,6 +4,8 @@ function sleep(ms) {
 async function process() {
   console.log('work start');
   await sleep(3000);
-  console.log('work end');
+  console.log('working');
 }
-process();
+process().then(() => {
+  console.log('work done');
+});
