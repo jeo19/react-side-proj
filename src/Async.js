@@ -1,23 +1,9 @@
-function incrementAndPrint(n) {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      const value = n + 1;
-      if (value === 5) {
-        const error = new Error();
-        error.name = 'valueIsFive';
-        reject(error);
-        return;
-      }
-      console.log(`result:${value}`);
-      resolve(value);
-    }, 1000);
-  });
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }
-incrementAndPrint(0)
-  .then(incrementAndPrint)
-  .then(incrementAndPrint)
-  .then(incrementAndPrint)
-  .then(incrementAndPrint)
-  .catch((e) => {
-    console.error(e);
-  });
+async function process() {
+  console.log('work start');
+  await sleep(3000);
+  console.log('work end');
+}
+process();
