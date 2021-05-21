@@ -1,16 +1,24 @@
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
-async function makeError() {
+const getDog = async () => {
   await sleep(1000);
-  const error = new Error();
-  throw error;
-}
+  return 'Dog';
+};
+const getRabbit = async () => {
+  await sleep(1000);
+  return 'Rabbit';
+};
+const getTurtle = async () => {
+  await sleep(1000);
+  return 'Turtle';
+};
 async function process() {
-  try {
-    await makeError();
-  } catch (error) {
-    console.error(error);
-  }
+  const dog = await getDog();
+  console.log(dog);
+  const rabbit = await getRabbit();
+  console.log(rabbit);
+  const turtle = await getTurtle();
+  console.log(turtle);
 }
-process()
+process();
