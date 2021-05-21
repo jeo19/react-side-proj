@@ -1,11 +1,16 @@
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
-async function process() {
-  console.log('work start');
-  await sleep(3000);
-  console.log('working');
+async function makeError() {
+  await sleep(1000);
+  const error = new Error();
+  throw error;
 }
-process().then(() => {
-  console.log('work done');
-});
+async function process() {
+  try {
+    await makeError();
+  } catch (error) {
+    console.error(error);
+  }
+}
+process()
