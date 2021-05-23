@@ -6,7 +6,7 @@ const getDog = async () => {
   return 'Dog';
 };
 const getRabbit = async () => {
-  await sleep(1000);
+  await sleep(500);
   return 'Rabbit';
 };
 const getTurtle = async () => {
@@ -14,9 +14,7 @@ const getTurtle = async () => {
   return 'Turtle';
 };
 async function process() {
-  const [dog, rabbit, turtle] = await Promise.all([getDog(), getRabbit(), getTurtle()]);
-  console.log(dog);
-  console.log(rabbit);
-  console.log(turtle);
+  const first = await Promise.race([getDog(), getRabbit(), getTurtle()]);
+  console.log(first);
 }
 process();
