@@ -1,5 +1,13 @@
 import React from 'react';
 
+function User({ user }) {
+  return (
+    <div>
+      <b>{user.name}</b>
+      <span>({user.email})</span>
+    </div>
+  );
+}
 function UserList() {
   const users = [
     {
@@ -26,3 +34,4 @@ function UserList() {
     </div>
   );
 }
+export default UserList;
