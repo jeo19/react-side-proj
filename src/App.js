@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import UserList from './UserList';
+import CreateUser from './CreateUser';
 
 function App() {
   const users = [
@@ -23,7 +24,12 @@ function App() {
   const onCreate = () => {
     nextId.current += 1;
   };
-  return <UserList users={users} />;
+  return (
+    <>
+      <CreateUser />
+      <UserList users={users} />
+    </>
+  );
 }
 
 export default App;
