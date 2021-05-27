@@ -3,7 +3,7 @@ import React from 'react';
 function User({ user }) {
   return (
     <div>
-      <b>{user.name}</b>
+      <b>{user.username}</b>
       <span>({user.email})</span>
     </div>
   );
