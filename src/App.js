@@ -20,16 +20,19 @@ function App() {
       id: '1',
       username: 'Alina',
       email: 'alina@gmail.com',
+      active: true,
     },
     {
       id: '2',
       username: 'pablo',
       email: 'pablo@outlook.com',
+      active: false,
     },
     {
       id: '3',
       username: 'Liana',
       email: 'liana@yandex.com',
+      active: false,
     },
   ]);
   const nextId = useRef(4);
