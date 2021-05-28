@@ -42,7 +42,7 @@ function App() {
       username,
       email,
     };
-    setUsers([...users, user]);
+    setUsers(users.concat(user));
     nextId.current += 1;
     setInputs({
       username: '',
@@ -52,10 +52,13 @@ function App() {
   const onRemove = (id) => {
     setUsers(users.filter((user) => user.id !== id));
   };
+  const onToggle = (id) => {
+    setUsers(users.map((user) => (user.id === id ? { ...user, active: !user.active } : user)));
+  };
   return (
     <>
       <CreateUser username={username} email={email} onChange={onChange} onCreate={onCreate} />
-      <UserList users={users} onRemove={onRemove} />
+      <UserList users={users} onRemove={onRemove} onToggle={onToggle} />
     </>
   );
 }
