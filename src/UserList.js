@@ -1,8 +1,12 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-import React from 'react';
+import React, { useEffect } from 'react';
 
 function User({ user, onRemove, onToggle }) {
+  useEffect(() => {
+    console.log('display a component');
+    return () => {
+      console.log('disappear');
+    };
+  }, []);
   return (
     <div>
       <b
