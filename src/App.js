@@ -2,6 +2,11 @@ import React, { useRef, useState } from 'react';
 import UserList from './UserList';
 import CreateUser from './CreateUser';
 
+function countActiveUsers(users) {
+  console.log('counting the active users');
+  return users.filter((user) => user.active).length;
+}
+
 function App() {
   const [inputs, setInputs] = useState({
     username: '',
@@ -55,10 +60,12 @@ function App() {
   const onToggle = (id) => {
     setUsers(users.map((user) => (user.id === id ? { ...user, active: !user.active } : user)));
   };
+  const count = countActiveUsers(users);
   return (
     <>
       <CreateUser username={username} email={email} onChange={onChange} onCreate={onCreate} />
       <UserList users={users} onRemove={onRemove} onToggle={onToggle} />
+      <div>An active users:{count}</div>
     </>
   );
 }
