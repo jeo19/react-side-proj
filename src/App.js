@@ -1,4 +1,4 @@
-import React, { useMemo, useRef, useState } from 'react';
+import React, { useCallback, useMemo, useRef, useState } from 'react';
 import UserList from './UserList';
 import CreateUser from './CreateUser';
 
@@ -13,13 +13,16 @@ function App() {
     email: '',
   });
   const { username, email } = inputs;
-  const onChange = (e) => {
-    const { name, value } = e.target;
-    setInputs({
-      ...inputs,
-      [name]: value,
-    });
-  };
+  const onChange = useCallback(
+    (e) => {
+      const { name, value } = e.target;
+      setInputs({
+        ...inputs,
+        [name]: value,
+      });
+    },
+    [inputs],
+  );
   const [users, setUsers] = useState([
     {
       id: '1',
