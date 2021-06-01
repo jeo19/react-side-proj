@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useMemo, useRef, useState } from 'react';
 import UserList from './UserList';
 import CreateUser from './CreateUser';
 
@@ -60,7 +60,7 @@ function App() {
   const onToggle = (id) => {
     setUsers(users.map((user) => (user.id === id ? { ...user, active: !user.active } : user)));
   };
-  const count = countActiveUsers(users);
+  const count = useMemo(() => countActiveUsers(users), [users]);
   return (
     <>
       <CreateUser username={username} email={email} onChange={onChange} onCreate={onCreate} />
