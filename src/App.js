@@ -8,6 +8,32 @@ function countActiveUsers(users) {
 }
 
 function App() {
+  const initialStete = {
+    inputs: {
+      usename: '',
+      email: '',
+    },
+    users: [
+      {
+        id: '1',
+        username: 'Alina',
+        email: 'alina@gmail.com',
+        active: true,
+      },
+      {
+        id: '2',
+        username: 'pablo',
+        email: 'pablo@outlook.com',
+        active: false,
+      },
+      {
+        id: '3',
+        username: 'Liana',
+        email: 'liana@yandex.com',
+        active: false,
+      },
+    ],
+  };
   const [inputs, setInputs] = useState({
     username: '',
     email: '',
