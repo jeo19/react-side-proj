@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useMemo, useReducer, useRef, useState } from 'react';
 import UserList from './UserList';
 import CreateUser from './CreateUser';
 
@@ -38,10 +38,13 @@ function reducer(state, action) {
 }
 
 function App() {
+  const [state, dispatch] = useReducer(reducer, initialStete);
+  const { users } = state;
+  const { username, email } = state.inputs;
   return (
     <>
       <CreateUser />
-      <UserList />
+      <UserList users={[]} />
       <div>An active users:0</div>
     </>
   );
