@@ -21,7 +21,7 @@ const initialStete = {
     },
     {
       id: '2',
-      username: 'pablo',
+      username: 'Pablo',
       email: 'pablo@outlook.com',
       active: false,
     },
@@ -34,13 +34,32 @@ const initialStete = {
   ],
 };
 function reducer(state, action) {
-  return state;
+  switch (action.type) {
+    case 'CHANGE_INPUT':
+      return {
+        ...state,
+        inputs: {
+          ...state.inputs,
+          [action.name]: action.value,
+        },
+      };
+
+    case 'CREATE_USERS':
+      return {
+        inputs: initialStete.inputs,
+        users: state.users.concat(action.user),
+      };
+
+    default:
+      return state;
+  }
 }
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initialStete);
   const { users } = state;
   const { username, email } = state.inputs;
+  const onCreate = (e) => {};
   return (
     <>
       <CreateUser />
