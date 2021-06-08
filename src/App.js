@@ -59,17 +59,17 @@ function App() {
   const [state, dispatch] = useReducer(reducer, initialStete);
   const { users } = state;
   const { username, email } = state.inputs;
-  const onChange = (e) => {
+  const onChange = useCallback((e) => {
     const { name, value } = e.target;
     dispatch({
       type: 'CHANGE_INPUT',
       name,
       value,
     });
-  };
+  }, []);
   return (
     <>
-      <CreateUser username={username} email={email} onChange={onchange} />
+      <CreateUser username={username} email={email} onChange={onChange} />
       <UserList users={users} />
       <div>An active users:0</div>
     </>
