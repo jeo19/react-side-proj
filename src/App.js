@@ -59,11 +59,18 @@ function App() {
   const [state, dispatch] = useReducer(reducer, initialStete);
   const { users } = state;
   const { username, email } = state.inputs;
-  const onCreate = (e) => {};
+  const onChange = (e) => {
+    const { name, value } = e.target;
+    dispatch({
+      type: 'CHANGE_INPUT',
+      name,
+      value,
+    });
+  };
   return (
     <>
-      <CreateUser />
-      <UserList users={[]} />
+      <CreateUser username={username} email={email} onChange={onchange} />
+      <UserList users={users} />
       <div>An active users:0</div>
     </>
   );
