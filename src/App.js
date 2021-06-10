@@ -57,6 +57,7 @@ function reducer(state, action) {
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initialStete);
+  const nextId = useRef(4);
   const { users } = state;
   const { username, email } = state.inputs;
   const onChange = useCallback((e) => {
@@ -67,9 +68,22 @@ function App() {
       value,
     });
   }, []);
+  const onCreate = useCallback(() => {
+    dispatch(
+      {
+        type: 'CREATE_USERS',
+        user: {
+          id: nextId,
+          username,
+          email,
+        },
+      },
+      [username, email],
+    );
+  });
   return (
     <>
-      <CreateUser username={username} email={email} onChange={onChange} />
+      <CreateUser username={username} email={email} onChange={onChange} onCreate={onCreate} />
       <UserList users={users} />
       <div>An active users:0</div>
     </>
