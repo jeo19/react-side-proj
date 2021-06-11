@@ -49,6 +49,13 @@ function reducer(state, action) {
         inputs: initialStete.inputs,
         users: state.users.concat(action.user),
       };
+    case 'TOGGLE_USER':
+      return {
+        ...state,
+        users: state.users.map((user) =>
+          user.id === action.id ? { ...user, active: !user.active } : user,
+        ),
+      };
 
     default:
       return state;
@@ -81,10 +88,13 @@ function App() {
       [username, email],
     );
   });
+  const onToggle = useCallback((id) => {
+    dispatch({ type: 'TOGGLE_USER', id });
+  });
   return (
     <>
       <CreateUser username={username} email={email} onChange={onChange} onCreate={onCreate} />
-      <UserList users={users} />
+      <UserList users={users} onToggle={onToggle} />
       <div>An active users:0</div>
     </>
   );
