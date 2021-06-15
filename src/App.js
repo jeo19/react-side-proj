@@ -72,6 +72,7 @@ function App() {
   const nextId = useRef(4);
   const { users } = state;
   const { username, email } = state.inputs;
+  const count = countActiveUsers(users);
   const onChange = useCallback((e) => {
     const { name, value } = e.target;
     dispatch({
@@ -106,7 +107,7 @@ function App() {
     <>
       <CreateUser username={username} email={email} onChange={onChange} onCreate={onCreate} />
       <UserList users={users} onToggle={onToggle} onRemove={onRemove} />
-      <div>An active users:0</div>
+      <div>An active users:{count}</div>
     </>
   );
 }
