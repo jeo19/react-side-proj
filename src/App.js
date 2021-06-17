@@ -1,6 +1,7 @@
-import React, { useCallback, useMemo, useReducer, useRef, useState } from 'react';
+import React, { useCallback, useMemo, useReducer, useRef } from 'react';
 import UserList from './UserList';
 import CreateUser from './CreateUser';
+import useInputs from './hooks/useInputs';
 
 function countActiveUsers(users) {
   console.log('counting the active users');
@@ -68,19 +69,14 @@ function reducer(state, action) {
 }
 
 function App() {
+  const [{ username, email }, onChange, reset] = useInputs({
+    usename: '',
+    email: '',
+  });
   const [state, dispatch] = useReducer(reducer, initialStete);
   const nextId = useRef(4);
   const { users } = state;
-  const { username, email } = state.inputs;
-  const count = countActiveUsers(users);
-  const onChange = useCallback((e) => {
-    const { name, value } = e.target;
-    dispatch({
-      type: 'CHANGE_INPUT',
-      name,
-      value,
-    });
-  }, []);
+
   const onCreate = useCallback(() => {
     dispatch(
       {
@@ -103,6 +99,7 @@ function App() {
       id,
     });
   }, []);
+  const count = useMemo(() => countActiveUsers(users), [users]);
   return (
     <>
       <CreateUser username={username} email={email} onChange={onChange} onCreate={onCreate} />
