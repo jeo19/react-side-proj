@@ -8,7 +8,7 @@ function countActiveUsers(users) {
   return users.filter((user) => user.active).length;
 }
 
-const initialStete = {
+const initialState = {
   inputs: {
     usename: '',
     email: '',
@@ -47,7 +47,6 @@ function reducer(state, action) {
 
     case 'CREATE_USERS':
       return {
-        inputs: initialStete.inputs,
         users: state.users.concat(action.user),
       };
     case 'TOGGLE_USER':
@@ -67,32 +66,31 @@ function reducer(state, action) {
       return state;
   }
 }
-
+export const UserDispatch = React.createContext(null);
 function App() {
-  const [{ username, email }, onChange, reset] = useInputs({
+  const [{ username, email }, onChange, onReset] = useInputs({
     usename: '',
     email: '',
   });
-  const [state, dispatch] = useReducer(reducer, initialStete);
+  const [state, dispatch] = useReducer(reducer, initialState);
   const nextId = useRef(4);
   const { users } = state;
 
   const onCreate = useCallback(() => {
-    dispatch(
-      {
-        type: 'CREATE_USERS',
-        user: {
-          id: nextId,
-          username,
-          email,
-        },
+    dispatch({
+      type: 'CREATE_USERS',
+      user: {
+        id: nextId.current,
+        username,
+        email,
       },
-      [username, email],
-    );
-  });
+    });
+    onReset();
+    nextId.current += 1;
+  }, [username, email, onReset]);
   const onToggle = useCallback((id) => {
     dispatch({ type: 'TOGGLE_USER', id });
-  });
+  }, []);
   const onRemove = useCallback((id) => {
     dispatch({
       type: 'REMOVE_USER',
@@ -101,11 +99,11 @@ function App() {
   }, []);
   const count = useMemo(() => countActiveUsers(users), [users]);
   return (
-    <>
+    <UserDispatch.Provider value={dispatch}>
       <CreateUser username={username} email={email} onChange={onChange} onCreate={onCreate} />
       <UserList users={users} onToggle={onToggle} onRemove={onRemove} />
       <div>An active users:{count}</div>
-    </>
+    </UserDispatch.Provider>
   );
 }
 
