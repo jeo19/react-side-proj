@@ -1,7 +1,6 @@
 import React, { useCallback, useMemo, useReducer, useRef } from 'react';
 import UserList from './UserList';
 import CreateUser from './CreateUser';
-import useInputs from './hooks/useInputs';
 
 function countActiveUsers(users) {
   console.log('counting the active users');
@@ -68,31 +67,13 @@ function reducer(state, action) {
 }
 export const UserDispatch = React.createContext(null);
 function App() {
-  const [{ username, email }, onChange, onReset] = useInputs({
-    usename: '',
-    email: '',
-  });
   const [state, dispatch] = useReducer(reducer, initialState);
-  const nextId = useRef(4);
   const { users } = state;
-
-  const onCreate = useCallback(() => {
-    dispatch({
-      type: 'CREATE_USERS',
-      user: {
-        id: nextId.current,
-        username,
-        email,
-      },
-    });
-    onReset();
-    nextId.current += 1;
-  }, [username, email, onReset]);
 
   const count = useMemo(() => countActiveUsers(users), [users]);
   return (
     <UserDispatch.Provider value={dispatch}>
-      <CreateUser username={username} email={email} onChange={onChange} onCreate={onCreate} />
+      <CreateUser />
       <UserList users={users} />
       <div>An active users:{count}</div>
     </UserDispatch.Provider>
