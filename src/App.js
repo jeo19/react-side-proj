@@ -88,15 +88,7 @@ function App() {
     onReset();
     nextId.current += 1;
   }, [username, email, onReset]);
-  const onToggle = useCallback((id) => {
-    dispatch({ type: 'TOGGLE_USER', id });
-  }, []);
-  const onRemove = useCallback((id) => {
-    dispatch({
-      type: 'REMOVE_USER',
-      id,
-    });
-  }, []);
+
   const count = useMemo(() => countActiveUsers(users), [users]);
   return (
     <UserDispatch.Provider value={dispatch}>
