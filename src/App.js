@@ -101,7 +101,7 @@ function App() {
   return (
     <UserDispatch.Provider value={dispatch}>
       <CreateUser username={username} email={email} onChange={onChange} onCreate={onCreate} />
-      <UserList users={users} onToggle={onToggle} onRemove={onRemove} />
+      <UserList users={users} />
       <div>An active users:{count}</div>
     </UserDispatch.Provider>
   );
