@@ -1,4 +1,5 @@
 import React, { useCallback, useMemo, useReducer, useRef } from 'react';
+import produce from 'immer';
 import UserList from './UserList';
 import CreateUser from './CreateUser';
 
@@ -35,19 +36,10 @@ const initialState = {
 };
 function reducer(state, action) {
   switch (action.type) {
-    case 'CHANGE_INPUT':
-      return {
-        ...state,
-        inputs: {
-          ...state.inputs,
-          [action.name]: action.value,
-        },
-      };
-
     case 'CREATE_USERS':
-      return {
-        users: state.users.concat(action.user),
-      };
+      return produce(state, (draft) => {
+        draft.users.push(action.user);
+      });
     case 'TOGGLE_USER':
       return {
         ...state,
