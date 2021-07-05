@@ -41,12 +41,10 @@ function reducer(state, action) {
         draft.users.push(action.user);
       });
     case 'TOGGLE_USER':
-      return {
-        ...state,
-        users: state.users.map((user) =>
-          user.id === action.id ? { ...user, active: !user.active } : user,
-        ),
-      };
+      return produce(state, (draft) => {
+        const user = draft.users.find((user) => user.id === action.id);
+        user.active = !user.active;
+      });
     case 'REMOVE_USER':
       return {
         ...state,
