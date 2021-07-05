@@ -46,10 +46,10 @@ function reducer(state, action) {
         user.active = !user.active;
       });
     case 'REMOVE_USER':
-      return {
-        ...state,
-        users: state.users.filter((user) => user.id !== action.id),
-      };
+      return produce(state, (draft) => {
+        const index = draft.users.findIndex((user) => user.id === action.id);
+        draft.users.splice(index, 1);
+      });
 
     default:
       return state;
